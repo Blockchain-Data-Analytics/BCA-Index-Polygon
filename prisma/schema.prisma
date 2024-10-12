@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Block {
+  number           BigInt        @id
+  hash             String        @unique
+  parentHash       String
+  baseFeePerGas    BigInt
+  difficulty       BigInt
+  extraData        String
+  gasLimit         BigInt
+  gasUsed          BigInt
+  logsBloom        String
+  miner            String
+  mixHash          String
+  nonce            BigInt
+  receiptsRoot     String
+  sha3Uncles       String
+  size             BigInt
+  stateRoot        String
+  timestamp        BigInt
+  totalDifficulty  BigInt
+  transactionsRoot String
+  uncles           String[]
+}
+
+model Transaction {
+  blockNumber          BigInt
+  blockHash            String
+  transactionIndex     BigInt
+  from                 String
+  to                   String
+  gas                  BigInt
+  gasPrice             BigInt
+  maxFeePerGas         BigInt
+  maxPriorityFeePerGas BigInt
+  hash                 String   @unique
+  input                String
+  nonce                BigInt
+  value                BigInt
+  type                 BigInt
+  chainId              BigInt
+  accessList           String[]
+  v                    String
+  r                    String
+  s                    String
+
+  @@id([blockNumber, transactionIndex])
+}

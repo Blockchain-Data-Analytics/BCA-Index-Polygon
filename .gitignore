@@ -1,0 +1,8 @@
+node_modules
+dist
+prisma/migrations
+src/rpc_conn*.json
+package-lock.json
+
+.env*
+!.env-example

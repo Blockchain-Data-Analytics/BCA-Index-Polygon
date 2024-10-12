@@ -1,0 +1,11 @@
+{
+	"shared": {
+		"matic": {
+			"amoy": {
+				"jsonRpc": [
+					"<your API key>"
+				]
+			}
+		}
+	}
+}
