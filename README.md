@@ -1,9 +1,9 @@
 
-# Indexing the Polygon (MATIC | POLY) chain
+# Indexing the Polygon (MATIC | POL) chain
 
 # BCA Service Token
 
-### Version: 2024-10-12
+### Version: 2024-10-13
 ### Copyright: 2024 Alexander Diemand
 ### [License](./LICENSE): GPLv3 - GNU GENERAL PUBLIC LICENSE Version 3
 
