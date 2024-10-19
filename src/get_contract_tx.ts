@@ -15,7 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import { contractAddress } from './contract'
 import rpc_conn from './rpc_conn-oklink.json'
 
 const rpc_head: string = "https://www.oklink.com/api/v5/explorer/"
@@ -140,7 +139,7 @@ type GetTxResult = {
  * @param count number of blocks to search
  * @returns list of transactions
  */
-export async function list_contract_transactions(chain: chain, from_block: bigint, count: bigint): Promise<Tx[]> {
+export async function list_contract_transactions(chain: chain, contractAddress: string, from_block: bigint, count: bigint): Promise<Tx[]> {
   const url = mk_url(chain, {
     tokenContractAddress: contractAddress,
     startBlockHeight: String(from_block),

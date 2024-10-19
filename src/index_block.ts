@@ -17,7 +17,7 @@
 
 import { isBlock } from './data_Block'
 import { isTransaction } from './data_Transaction'
-import { connect, get_block, last_block_height } from './get_block'
+import { connect, get_block, ankr_amoy_url, last_block_height } from './get_block'
 import { chain } from './get_contract_tx'
 
 import { PrismaClient } from '@prisma/client'
@@ -39,7 +39,7 @@ for (let index = 2; index < args.length - 1; index++) {
   }
 }
 
-const rpc = connect()
+const rpc = connect(ankr_amoy_url)
 
 console.log("now: " + new Date().toLocaleString())
 

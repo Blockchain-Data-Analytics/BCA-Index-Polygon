@@ -15,8 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import { connect, last_block_height } from './get_block'
+import { connect, ankr_amoy_url, last_block_height } from './get_block'
 import { chain, list_contract_transactions } from './get_contract_tx'
+import { serviceAddress } from './contract'
 
 const selected_chain = chain.POLYGON_AMOY
 
@@ -32,7 +33,7 @@ for (let index = 2; index < args.length - 1; index++) {
   }
 }
 
-const rpc = connect()
+const rpc = connect(ankr_amoy_url)
 
 console.log("now: " + new Date().toLocaleString())
 
@@ -47,7 +48,7 @@ async function main(): Promise<void> {
 
   try {
     // const the_block: bigint = 12496368n
-    const transactions = await list_contract_transactions(selected_chain, startblock, numblocks)
+    const transactions = await list_contract_transactions(selected_chain, serviceAddress, startblock, numblocks)
     console.log(`got ${transactions.length} transactions`)
     console.log(JSON.stringify(transactions,null,2))
     for (const tx of transactions) {
