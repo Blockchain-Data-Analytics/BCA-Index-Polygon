@@ -15,21 +15,21 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// // local hardhat node - testnet
-// // import deployed_address from "$lib/../../../bca-token-solidity/ignition/deployments/chain-31337/deployed_addresses.json"
-
-// // Amoy - Polygon testnet
-// import deployed_address from "../../bca-token-solidity/ignition/deployments/chain-80002/deployed_addresses.json"
-const deployed_address = {
-    "BCA_Token#BCAServiceToken": "0xdAe0A2bd88D31351490dE53A93A42121CB821494"
+const deployed_addresses = {
+    "BCA_Token#BCAServiceToken": "0xdAe0A2bd88D31351490dE53A93A42121CB821494",
+    "BCA_Service#BCAServiceContract": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
   }
+  
+export const tokenAddress: string = deployed_addresses["BCA_Token#BCAServiceToken"].toLowerCase()
+export const serviceAddress: string = deployed_addresses["BCA_Service#BCAServiceContract"].toLowerCase()
 
-export const contractAddress: string = deployed_address["BCA_Token#BCAServiceToken"].toLowerCase()
 
-// // local hardhat node - testnet
-// // import abi_json from "$lib/bca_token-abi.json"
+// the token contract (ERC20) ABI
+import token_abi_json from "./bca_token-abi.json"
 
-// // Amoy - Polygon testnet
-import abi_json from "./bca_token-abi.json"
+export const tokenABI = token_abi_json["abi"];
 
-export const contractABI = abi_json["abi"];
+// the service contract ABI
+import service_abi_json from "./bca_service-abi.json"
+
+export const serviceABI = service_abi_json["abi"];

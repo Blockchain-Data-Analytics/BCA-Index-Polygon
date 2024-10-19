@@ -16,12 +16,13 @@
 */
 
 import { Contract, ContractAbi, DecodedParams, Web3 } from 'web3'
-import { contractABI, contractAddress } from './contract'
-import rpc_conn from './rpc_conn-getblock.json'
 import { RegisteredSubscription } from 'web3/lib/commonjs/eth.exports';
 import { GetBlock, isBlock } from './data_Block';
 
-const rpc_head: string = "https://go.getblock.io/"
+// import rpc_conn from './rpc_conn-getblock.json'
+// export const getblock_url: string = "https://go.getblock.io/" + rpc_conn.shared.matic.amoy.jsonRpc[0] + "/"
+export const ankr_amoy_url: string = 'https://rpc.ankr.com/polygon_amoy'
+export const ankr_polygon_url: string = 'https://rpc.ankr.com/polygon'
 
 /**
  * type alias shortened
@@ -32,9 +33,9 @@ export type Web3Rpc = Web3<RegisteredSubscription>
  * Instantiate a connection to a remote RPC endpoint
  * @returns the Web3 rpc connection
  */
-export function connect(): Web3Rpc {
+export function connect(url: string): Web3Rpc {
   const web3Rpc = new Web3(new Web3.providers.HttpProvider(
-          rpc_head + rpc_conn.shared.matic.amoy.jsonRpc[0] + "/"
+    url
   ));
   return web3Rpc
 }
@@ -49,7 +50,7 @@ export type MyContract = Contract<ContractAbi>
  * @param rpc the Web3 rpc connectio
  * @returns the contract instance
  */
-export function contract(rpc: Web3Rpc): MyContract {
+export function contract(rpc: Web3Rpc, contractABI: any, contractAddress: string): MyContract {
   const contract = new rpc.eth.Contract(contractABI, contractAddress)
   return contract
 }
