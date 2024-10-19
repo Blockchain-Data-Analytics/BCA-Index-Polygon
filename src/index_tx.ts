@@ -17,12 +17,14 @@
 
 import { connect, ankr_amoy_url, last_block_height } from './get_block'
 import { chain, list_contract_transactions } from './get_contract_tx'
-import { serviceAddress } from './contract'
+//import { serviceAddress } from './contract'
 
 const selected_chain = chain.POLYGON_AMOY
 
 let startblock: bigint = 0n
 let numblocks: bigint = 100n
+let contractAddress: string = ""
+
 const args = process.argv
 // skip first two arguments; usually the interpreter and the code file
 for (let index = 2; index < args.length - 1; index++) {
@@ -30,6 +32,8 @@ for (let index = 2; index < args.length - 1; index++) {
     startblock = BigInt(args[++index])
   } else if (args[index] == '--numblocks') {
     numblocks = BigInt(args[++index])
+  } else if (args[index] == '--address') {
+    contractAddress = args[++index]
   }
 }
 
@@ -48,7 +52,7 @@ async function main(): Promise<void> {
 
   try {
     // const the_block: bigint = 12496368n
-    const transactions = await list_contract_transactions(selected_chain, serviceAddress, startblock, numblocks)
+    const transactions = await list_contract_transactions(selected_chain, contractAddress, startblock, numblocks)
     console.log(`got ${transactions.length} transactions`)
     console.log(JSON.stringify(transactions,null,2))
     for (const tx of transactions) {
